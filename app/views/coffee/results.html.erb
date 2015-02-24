@@ -1,0 +1,16 @@
+<h2>Coffee, Coffee, Here We Come</h2>
+
+<% @shops.each do |shop| %>
+  <div class='shop'>
+    <div class='info'>
+      <h3><%= shop['venue']['name'] %></h3>
+      <p><small><%= shop['venue']['rating'] %>/10 from <%= shop['venue']['ratingSignals'] %> reviews</small></p>
+      <small><%= link_to "Directions", "https://www.google.com/maps?saddr=Current+Location&daddr=#{URI.encode(shop['venue']['name'])}", target: '_blank' %></small>
+    </div>
+    <% shop['insta_images'].first(4).each do |image| %>
+      <div class='image'>
+        <%= image_tag image['images']['thumbnail']['url'], size: '100x100' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
